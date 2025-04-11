@@ -5,15 +5,15 @@ TF_DIR ?= .
 
 init: ## Initialize Terraform
 	@echo "🔧 Initializing Terraform..."
-	cd $(TF_DIR) && $(TF) init
+	cd $(TF_DIR) && $(TF) init -input=false
 
 validate: ## Validate Terraform configuration
 	@echo "✅ Validating Terraform files..."
-	cd $(TF_DIR) && $(TF) validate
+	cd $(TF_DIR) && $(TF) validate -no-color
 
 plan: ## Show Terraform plan
 	@echo "📝 Creating execution plan..."
-	cd $(TF_DIR) && $(TF) plan
+	cd $(TF_DIR) && $(TF) plan -no-color -input=false
 
 apply: ## Apply Terraform changes
 	@echo "🚀 Applying Terraform changes..."
@@ -25,7 +25,7 @@ destroy: ## Destroy Terraform-managed infrastructure
 
 format: ## Format Terraform code
 	@echo "🎨 Formatting Terraform code..."
-	cd $(TF_DIR) && $(TF) fmt -recursive
+	cd $(TF_DIR) && $(TF) fmt -recursive -check
 
 lint: format validate ## Format + Validate
 
