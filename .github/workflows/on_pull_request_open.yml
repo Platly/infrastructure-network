@@ -1,0 +1,10 @@
+name: Network Deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml
