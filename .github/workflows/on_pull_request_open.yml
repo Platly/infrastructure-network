@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   terraform:
-    uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml@build/add-terraform-workflow
+    uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml@main
     with:
       AWS_REGION: eu-central-1
     secrets:
