@@ -23,7 +23,7 @@ destroy: ## Destroy Terraform-managed infrastructure
 	@echo "💥 Destroying Terraform resources..."
 	cd $(TF_DIR) && $(TF) destroy -auto-approve
 
-format: ## Format Terraform code
+fmt: ## Format Terraform code
 	@echo "🎨 Formatting Terraform code..."
 	cd $(TF_DIR) && $(TF) fmt -recursive -check
 
