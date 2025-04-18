@@ -5,7 +5,7 @@ on:
     inputs:
       spec:
         description: "Path to the Digger config file."
-        required: false
+        required: true
         type: string
       run_name:
         description: "Optional name for the run."
@@ -13,7 +13,8 @@ on:
         type: string
 
 jobs:
-  digger-job:
+  terraform-run:
+    name: Terraform Run
     uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml@build/setup-digger
     permissions:
       contents: write      # required to merge PRs
@@ -24,5 +25,7 @@ jobs:
       statuses: write      # required to validate combined PR status
     with:
       AWS_REGION: eu-central-1
+      spec: ${{ inputs.spec }}
+      run_name: ${{ inputs.run_name }}
     secrets:
       AWS_IAM_ROLE: ${{ secrets.AWS_NETWORK_IAM_ROLE }}
