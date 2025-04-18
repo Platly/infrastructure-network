@@ -22,7 +22,5 @@ jobs:
     uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml@build/setup-digger
     with:
       AWS_REGION: eu-central-1
-      run-name: '${{inputs.run_name}}'
-      spec: '${{inputs.spec}}'
     secrets:
       AWS_IAM_ROLE: ${{ secrets.AWS_NETWORK_IAM_ROLE }}
