@@ -2,6 +2,15 @@ name: Network Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      spec:
+        description: "Path to the Digger config file."
+        required: false
+        type: string
+      run_name:
+        description: "Optional name for the run."
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -13,5 +22,7 @@ jobs:
     uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml@build/setup-digger
     with:
       AWS_REGION: eu-central-1
+      run-name: '${{inputs.run_name}}'
+      spec: '${{inputs.spec}}'
     secrets:
       AWS_IAM_ROLE: ${{ secrets.AWS_NETWORK_IAM_ROLE }}
