@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   terraform:
-    uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml@main
+    uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml@build/setup-digger
     with:
       AWS_REGION: eu-central-1
     secrets:
