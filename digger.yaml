@@ -6,7 +6,9 @@ workflows:
     plan:
       steps:
         - init:
-          extra_args: ["backend-config=prod/backend.tfvars"]
+          extra_args:
+            - -backend-config=./production/backend.tfvars
+            - -reconfigure
         - plan
     apply:
       steps:
