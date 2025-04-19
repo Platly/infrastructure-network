@@ -1,0 +1,31 @@
+name: Network Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: "Path to the Digger config file."
+        required: true
+        type: string
+      run_name:
+        description: "Optional name for the run."
+        required: false
+        type: string
+
+jobs:
+  terraform-run:
+    name: Terraform Run
+    uses: Platly/github-actions/.github/workflows/workflow_terraform_run.yml@build/setup-digger
+    permissions:
+      contents: write      # required to merge PRs
+      actions: write       # required for plan persistence
+      id-token: write      # required for workload-identity-federation
+      pull-requests: write # required to post PR comments
+      issues: read         # required to check if PR number is an issue or not
+      statuses: write      # required to validate combined PR status
+    with:
+      AWS_REGION: eu-central-1
+      spec: ${{ inputs.spec }}
+      run_name: ${{ inputs.run_name }}
+    secrets:
+      AWS_IAM_ROLE: ${{ secrets.AWS_NETWORK_IAM_ROLE }}
